@@ -3,32 +3,54 @@ layout: default
 title: Automated Theorem Proving 项目介绍
 ---
 
-## 项目背景
+Certainly! Here's a more detailed and enriched introduction for your GitHub Pages site using the Cayman theme.
 
-Automated Theorem Proving （自动定理证明）的训练需要大量高质量的formal statement作为proof合成的起始，但目前通用的大模型在Autoformalization上的效果不佳。尽管有相关工作通过训练端到端的 formalizer模型解决这个问题，但是仍然面临两个问题：
+---
 
-1. 语法：形式化语言 （Lean4）的知识不足。基座模型的预训练中缺乏形式化数据，只依靠后训练无法熟练掌握复杂的语法。
-2. 语义：缺少可靠的一致性评价。生成的formal statement需要保证和原命题等价，目前最优的方法是llm 进行判断，但llm-as-judge的方法的可靠性缺乏验证。
+# Autoformalizer with Tool Feedback (ATF)
 
-这篇工作，将语法有效性和语义一致性的评估作为工具调用引入到autoformalization流程中，显著提升了formal statement的生成质量。
+Welcome to the official GitHub page for Autoformalizer with Tool Feedback (ATF), a pioneering framework designed to revolutionize the autoformalization process within Automated Theorem Proving (ATP).
 
-## 工具调用设计
+## Overview
 
-### Syntax_check 语法检测
+Autoformalization is a critical aspect of ATP, tasked with converting mathematical problems articulated in natural language into formal statements that can be rigorously proven within formal systems like Lean or Isabelle. ATF tackles the persistent challenges of syntactic validity and semantic consistency by embedding sophisticated tools directly into the formalization workflow, thereby ensuring higher accuracy and reliability.
 
-以Lean 4编译器的反馈作为语法有效性的检测，能够直接判断formal statement的语法正确性，也是常用的验证方法。但关键问题在于Lean 4编译效率低、难以处理大规模的数据。
+## Key Features
 
-采用了一种 预检查 + 分组批量执行策略：
-...
+### Tool Integration
 
-## Framework
+ATF seamlessly integrates Lean 4 compilers to automatically correct syntax errors and employs a multi-LLMs-as-judge approach to validate semantic consistency. This dual-tool strategy ensures that the generated statements are not only syntactically valid but also semantically aligned with the original mathematical problems.
 
-### 推理范式
+### Adaptive Refinement
 
-模型基于数学问题进行简明思考后给出初步的formal statement结果，随后按照 语法->语义的调用方法进行检测，根据反馈结果进行修改，直到全部通过给出最终结果。
-...
+By leveraging tool feedback, ATF dynamically refines the generated formal statements, adapting to errors and inconsistencies in real-time. This iterative refinement process significantly enhances both syntactic validity and semantic consistency, setting a new standard in autoformalization.
 
-## 实验
+### Progressive Training Pipeline
 
-在StepFun使用的三个ATP数据集 FormalMath-lite （ID）、Proverbench （ID）、combibench（OOD）上进行实验
-...
+ATF is trained through a multi-phase process designed to optimize its formalization capabilities:
+
+1. **Cold-Start Phase**: Introduces the model to tool usage with synthetic tool-calling data, establishing foundational formalization skills.
+   
+2. **Expert Iteration Phase**: Enhances the model's ability to generate valid formal statements through iterative refinement and feedback integration.
+
+3. **Direct Preference Optimization (DPO)**: Reduces ineffective revisions by optimizing the model's decision-making process, ensuring efficient and effective formalization.
+
+### Open-Source Dataset
+
+We are proud to release Numina-ATF, a comprehensive dataset containing 750K synthetic formal statements derived from competition-level mathematical queries. This dataset serves as a valuable resource for researchers and developers, facilitating further advancements in the fields of autoformalization and ATP.
+
+## Performance
+
+ATF has been rigorously evaluated across multiple benchmarks, consistently outperforming existing formalizers. It excels in both in-distribution and out-of-distribution scenarios, demonstrating robust generalization capabilities. The model benefits significantly from increased sampling during inference, achieving remarkable pass rates even at higher sampling counts.
+
+## Get Involved
+
+Explore our repository to access the ATF model, dataset, and detailed documentation. We welcome contributions, discussions, and collaborations from the community to further advance the field of autoformalization and ATP. Whether you're a researcher, developer, or enthusiast, your involvement is invaluable to us.
+
+## Contact
+
+For inquiries, collaborations, or feedback, please reach out to us via [GitHub Issues](https://github.com/qguo-create/Autoformalizer-with-Tool-Feedback/issues) or contact the project maintainers directly. We look forward to hearing from you and working together to push the boundaries of automated theorem proving.
+
+---
+
+Feel free to adjust the content to better align with your project's specifics and objectives
