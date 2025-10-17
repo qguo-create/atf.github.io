@@ -1,4 +1,7 @@
-
+---
+layout: default
+title: Automated Theorem Proving 项目介绍
+---
 
 ## 项目背景
 
